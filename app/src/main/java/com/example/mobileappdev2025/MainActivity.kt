@@ -1,21 +1,19 @@
 package com.example.mobileappdev2025
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import java.util.Random
 
 class MainActivity : AppCompatActivity() {
-    private var leftNum :Int = 0;
-    private var rightNum :Int = 0;
-    private var score :Int = 0;
+    private var rightNum: String = "Submit"
+    private var score: Int = 0
+    private var titleName: String = "   Who's That Pokemon??"
+    private var counter: Int = 0
+    private var selectedAnswer: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,54 +24,118 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        // above init layout ui
 
-        pickRandomNumber()
+        val radioButtons = listOf(
+            findViewById<RadioButton>(R.id.radioButton1),
+            findViewById<RadioButton>(R.id.radioButton2),
+            findViewById<RadioButton>(R.id.radioButton3),
+            findViewById<RadioButton>(R.id.radioButton4)
+        )
+
+        val submitB: Button = findViewById(R.id.submitButton)
+        val nButton = findViewById<Button>(R.id.nextButton)
+
+        radioButtons.forEach { radioButton ->
+            radioButton.setOnClickListener {
+                radioButtons.forEach { it.isChecked = false }
+                radioButton.isChecked = true
+                selectedAnswer = radioButton.text.toString()
+            }
+        }
+
+        submitB.setOnClickListener {
+            if (selectedAnswer != null) {
+                checkAnswer(selectedAnswer!!)
+                counter += 1
+                updateButtons()
+                nextPicture()
+                setTitle()
+            }
+        }
+
+        nButton.setOnClickListener {
+            counter += 1
+            updateButtons()
+            nextPicture()
+            setTitle()
+        }
+
         setScore(0)
+        setTitle(titleName)
+        updateButtons()
+        pokeNames()
+        nextPicture()
     }
 
-    fun leftButtonOnClick(view: View)
-    {
-        if (leftNum > rightNum)
-            setScore(score+1)
-        else
-            setScore(score-1)
+    fun checkAnswer(selectedAnswer: String) {
+        val correctAnswers = mapOf(
+            0 to "Sceptile",
+            2 to "Snorlax",
+            4 to "Umbreon",
+            6 to "Mewtwo"
+        )
 
-        pickRandomNumber()
+        if (correctAnswers[counter] == selectedAnswer) {
+            setScore(score + 1)
+        }
     }
 
-    fun rightButtonOnClick(view: View)
-    {
-        if (leftNum < rightNum)
-            setScore(score+1)
-        else
-            setScore(score-1)
+    fun updateButtons() {
+        findViewById<Button>(R.id.submitButton).visibility =
+            if (counter % 2 == 0 && counter <= 7) View.VISIBLE else View.INVISIBLE
+        findViewById<Button>(R.id.nextButton).visibility =
+            if (counter % 2 == 1) View.VISIBLE else View.INVISIBLE
+        }
 
-        pickRandomNumber()
+
+    fun pokeNames() {
+        val Name1: RadioButton = findViewById(R.id.radioButton1)
+        Name1.text = "Sceptile"
+        val Name2: RadioButton = findViewById(R.id.radioButton2)
+        Name2.text = "Mewtwo"
+        val Name3: RadioButton = findViewById(R.id.radioButton3)
+        Name3.text = "Umbreon"
+        val Name4: RadioButton = findViewById(R.id.radioButton4)
+        Name4.text = "Snorlax"
     }
 
-    fun pickRandomNumber()
-    {
-        var leftButton = findViewById<Button>(R.id.left_number_button)
-        var rightButton = findViewById<Button>(R.id.right_number_button)
-
-        var rand = Random()
-
-        do {
-            leftNum = rand.nextInt(10)
-            rightNum = rand.nextInt(10)
-        } while (leftNum == rightNum)
-
-        leftButton.text = "$leftNum"
-        rightButton.text = "$rightNum"
+    fun nextPicture() {
+        findViewById<ImageView>(R.id.sceptile_s).visibility = if (counter == 0) View.VISIBLE else View.INVISIBLE
+        findViewById<ImageView>(R.id.sceptile_r).visibility = if (counter == 1) View.VISIBLE else View.INVISIBLE
+        findViewById<ImageView>(R.id.mewtwo_s).visibility = if (counter == 6) View.VISIBLE else View.INVISIBLE
+        findViewById<ImageView>(R.id.mewtwo_r).visibility = if (counter == 7) View.VISIBLE else View.INVISIBLE
+        findViewById<ImageView>(R.id.umbreon_s).visibility = if (counter == 4) View.VISIBLE else View.INVISIBLE
+        findViewById<ImageView>(R.id.umbreon_r).visibility = if (counter == 5) View.VISIBLE else View.INVISIBLE
+        findViewById<ImageView>(R.id.snorlax_s).visibility = if (counter == 2) View.VISIBLE else View.INVISIBLE
+        findViewById<ImageView>(R.id.snorlax_r).visibility = if (counter == 3) View.VISIBLE else View.INVISIBLE
+        findViewById<ImageView>(R.id.game_over).visibility = if (counter == 8) View.VISIBLE else View.INVISIBLE
     }
 
-    fun setScore(_score: Int)
-    {
-        score = _score;
-
-        findViewById<ImageView>(R.id.you_won_image).visibility = if (score > 5) View.VISIBLE else View.INVISIBLE;
-
+    fun setScore(_score: Int) {
+        score = _score
         findViewById<TextView>(R.id.score_text).text = "Score: $score"
     }
+
+
+    fun setTitle() {
+        if (counter == 0 || counter == 2 || counter == 4 || counter == 6){
+            findViewById<TextView>(R.id.Title).text = "$titleName"
+        }
+        if (counter == 1) {
+            findViewById<TextView>(R.id.Title).text = "            It's Sceptile!"
+        }
+        if (counter == 3) {
+            findViewById<TextView>(R.id.Title).text = "             It's Snorlax!"
+        }
+        if (counter == 5) {
+            findViewById<TextView>(R.id.Title).text = "             It's Umbreon!"
+        }
+        if (counter == 7) {
+            findViewById<TextView>(R.id.Title).text = "              It's Mewtwo!"
+        }
+        if (counter == 8){
+            findViewById<TextView>(R.id.Title).text = "       Thanks For Playing!"
+        }
+    }
+
 }

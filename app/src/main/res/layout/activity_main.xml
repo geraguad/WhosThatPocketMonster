@@ -11,46 +11,179 @@
         android:id="@+id/score_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="Score: 0"
+        android:text="Score:0"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sceptile_s" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/score_text" />
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="282dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="25dp"
+        android:text="   Who's That Pokemon??"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/left_number_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginBottom="42dp"
-        android:onClick="leftButtonOnClick"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <RadioGroup
+        android:layout_width="240dp"
+        android:layout_height="120dp"
+        app:layout_constraintBottom_toTopOf="@+id/score_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sceptile_s">
 
-    <Button
-        android:id="@+id/right_number_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="42dp"
-        android:onClick="rightButtonOnClick"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <GridLayout
+            android:layout_width="240dp"
+            android:layout_height="120dp"
+            android:columnCount="2"
+            android:padding="8dp"
+            android:rowCount="2">
+
+            <RadioButton
+                android:id="@+id/radioButton1"
+                android:layout_width="110dp"
+                android:layout_height="50dp"
+                android:text="Option 1" />
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="110dp"
+                android:layout_height="50dp"
+                android:text="Option 2" />
+
+            <RadioButton
+                android:id="@+id/radioButton3"
+                android:layout_width="110dp"
+                android:layout_height="50dp"
+                android:text="Option 3" />
+
+            <RadioButton
+                android:id="@+id/radioButton4"
+                android:layout_width="110dp"
+                android:layout_height="50dp"
+                android:text="Option 4" />
+        </GridLayout>
+
+    </RadioGroup>
 
     <ImageView
-        android:id="@+id/you_won_image"
-        android:layout_width="248dp"
-        android:layout_height="248dp"
-        android:layout_marginTop="120dp"
-        android:scaleType="centerInside"
-        android:visibility="invisible"
+        android:id="@+id/sceptile_s"
+        android:layout_width="352dp"
+        android:layout_height="336dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/awesome_face" />
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        app:srcCompat="@drawable/sceptile_s" />
+
+    <ImageView
+        android:id="@+id/sceptile_r"
+        android:layout_width="352dp"
+        android:layout_height="336dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        app:srcCompat="@drawable/sceptile_r" />
+
+    <ImageView
+        android:id="@+id/mewtwo_s"
+        android:layout_width="352dp"
+        android:layout_height="336dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        app:srcCompat="@drawable/mewtwo_s" />
+
+    <ImageView
+        android:id="@+id/mewtwo_r"
+        android:layout_width="352dp"
+        android:layout_height="336dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        app:srcCompat="@drawable/mewtwo_r" />
+
+    <ImageView
+        android:id="@+id/umbreon_s"
+        android:layout_width="352dp"
+        android:layout_height="336dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        app:srcCompat="@drawable/umbreon_s" />
+
+    <ImageView
+        android:id="@+id/umbreon_r"
+        android:layout_width="352dp"
+        android:layout_height="336dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        app:srcCompat="@drawable/umbreon_r" />
+
+    <ImageView
+        android:id="@+id/snorlax_s"
+        android:layout_width="352dp"
+        android:layout_height="336dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        app:srcCompat="@drawable/snorlax_s" />
+
+    <ImageView
+        android:id="@+id/snorlax_r"
+        android:layout_width="352dp"
+        android:layout_height="336dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        app:srcCompat="@drawable/snorlax_r" />
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/score_text" />
+
+    <ImageView
+        android:id="@+id/game_over"
+        android:layout_width="352dp"
+        android:layout_height="336dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        app:srcCompat="@drawable/game_over" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
