@@ -76,7 +76,9 @@ class MainActivity : AppCompatActivity() {
         )
 
         if (correctAnswers[counter] == selectedAnswer) {
-            setScore(score + 1)
+            setScore(score + 1)}
+        else{
+            setScore(score - 1 )
         }
     }
 
